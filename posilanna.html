@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Предмети</title>
+  <style>
+    :root {
+      --bg-color: #f4f6f9;
+      --text-color: #333;
+      --header-bg: #4a90e2;
+      --container-bg: #ffffff;
+      --link-color: #4a90e2;
+      --link-bg: #f9fafc;
+      --link-hover: #e9f2ff;
+      --shadow: rgba(0,0,0,0.1);
+    }
+
+    body.dark {
+      --bg-color: #1e1e1e;
+      --text-color: #e0e0e0;
+      --header-bg: #0d47a1;
+      --container-bg: #2c2c2c;
+      --link-color: #90caf9;
+      --link-bg: #3a3a3a;
+      --link-hover: #1565c0;
+      --shadow: rgba(0,0,0,0.6);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    header {
+      background: var(--header-bg);
+      color: white;
+      text-align: center;
+      padding: 15px 12px;
+      position: relative;
+    }
+
+
+    #theme-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      padding: 18px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+      background-color: #f0f0f0;
+      transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 5px var(--shadow);
+      color: var(--text-color);
+      line-height: 1;
+    }
+
+     #theme-toggle:hover {
+      background-color: #e0e0e0;
+    }
+
+    #theme-toggle:active {
+      transform: translateY(-48%);
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    #theme-toggle:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.5);
+    }
+
+    body.dark #theme-toggle {
+      background-color: var(--link-bg);
+      color: var(--text-color);
+    }
+
+  body.dark #theme-toggle:hover {
+   background-color: #5a5a5a;
+  }
+
+  body.dark #theme-toggle:active {
+   transform: translateY(-48%);
+   box-shadow: 0 1px 3px var(--shadow);
+  }
+
+  body.dark #theme-toggle:focus {
+   outline: none;
+   box-shadow: 0 0 0 3px rgba(144, 202, 249, 0.5);
+  }
+  /* КІНЕЦЬ ВИПРАВЛЕНИХ СТИЛІВ */
+
+  .container {
+   width: 90%;
+   max-width: 1400px;
+   margin: 25px auto;
+   padding: 40px;
+   background: var(--container-bg);
+   border-radius: 16px;
+   box-shadow: 0 8px 16px var(--shadow);
+   transition: all 0.3s ease;
+  }
+
+  h2 {
+   border-left: 5px solid var(--link-color);
+   padding-left: 12px;
+   margin-top: 10px;
+   color: var(--link-color);
+   font-size: 1.5em;
+  }
+
+  ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   gap: 22px;
+  }
+
+  li a {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: var(--link-bg);
+   padding: 28px;
+   border-radius: 14px;
+   font-size: 1.2em;
+   font-weight: bold;
+   text-decoration: none;
+   color: var(--link-color);
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 8px var(--shadow);
+   text-align: center;
+  }
+
+  li a:hover {
+   background: var(--link-hover);
+   transform: translateY(-3px);
+   box-shadow: 0 8px 14px var(--shadow);
+  }
+
+  li a:active {
+   transform: scale(0.96);
+  }
+
+  .full-width {
+   grid-column: span 3;
+  }
+
+  @media (max-width: 900px) {
+   ul {
+    grid-template-columns: 1fr 1fr;
+   }
+   .full-width {
+    grid-column: span 2;
+   }
+  }
+
+  @media (max-width: 480px) {
+   ul {
+    grid-template-columns: 1fr;
+   }
+   .full-width {
+    grid-column: span 1;
+   }
+  }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📚 Предмети</h1>
+  <button id="theme-toggle">🌙</button>
+</header>
+
+<div class="container">
+  <h2></h2>
+  <ul>
+    <li class="full-width"><a href="https://us05web.zoom.us/j/7958768112?pwd=bHBmaDFkTUlISHdKRUY0cmlXbVdkQT09">Історія України, Всесвітня історія</a></li>
+    <li><a href="https://us05web.zoom.us/j/8950532273?pwd=dnt1VnHrQ29RvvKNPZn4QqzKXb6gBO.1%20%20Идентификатор%20конференции:%20895%20053%202273%20Код%20доступа:%20ME6efeau">Алгебра, геометрія</a></li>
+    <li><a href="https://us04web.zoom.us/j/5461360866?pwd=b3BUZE10OEpqRVVIQkovSHcraTJ1Zz09">Біологія</a></li>
+    <li><a href="https://us05web.zoom.us/j/9773626389?pwd=d041SWxlVFB0dEs4ME94c0dsUXB4dz09">Географія</a></li>
+    <li><a href="#">Зарубіжна література, без посилання</a></li>
+    <li><a href="https://us05web.zoom.us/j/88933789147?pwd=oaMXpR9N0oT1ov6H6ZWoSFKV1X1n6W.1">Захист України</a></li>
+    <li><a href="https://us04web.zoom.us/j/7889847585?pwd=aWRUVVg4QmF5b2djQzROblduMDcrdz09">Інформатика</a></li>
+    <li><a href="https://us05web.zoom.us/j/82012800497?pwd=xRLsOS3aAaV5xrNQyuOH5NvaY4S0Cy.1">Іноземна мова</a></li>
+    <li><a href="#">Технології, без посилання</a></li>
+    <li><a href="https://us04web.zoom.us/j/5621955127?pwd=ejVEQTNOeVRjS3pDa3AxMnlYakpkZz09">Українська мова, література</a></li>
+    <li><a href="https://us05web.zoom.us/j/82962806394?pwd=VzapWPEPYMFLVf4KCwAFFBGrvxJpeV.1">Фізика та астрономія</a></li>
+    <li><a href="https://us05web.zoom.us/j/9420045848?pwd=ReaL0twL4R9o7CHt9nbh4iRMbd0kav.1">Фізична культура</a></li>
+    <li><a href="https://us05web.zoom.us/j/5114503115?pwd=aDb1AEODAdo6p5AK0qc2XsVHX7sMzU.1">Хімія</a></li>
+  </ul>
+</div>
+
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+
+   function applyThemeIcons() {
+    if (document.body.classList.contains('dark')) {
+       themeToggle.textContent = '☀️'; // Сонце для темної теми
+    } else {
+      themeToggle.textContent = '🌙'; // Місяць для світлої теми
+    }
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    applyThemeIcons();
+  });
+  
+  // Встановлюємо початкову іконку
+  applyThemeIcons();
+</script>
+
+</body>
+</html>
