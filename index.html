@@ -4,15 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Посилання на предмети</title>
-  <link rel="icon" type="image/svg+xml" href="https://media.istockphoto.com/id/1221605047/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D1%86%D0%B5%D0%BF%D1%8C-%D0%B7%D0%BD%D0%B0%D1%87%D0%BE%D0%BA-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%B8-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD-%D0%BC%D0%BE%D0%B4%D0%BD%D0%BE.jpg?s=612x612&w=0&k=20&c=Z4JqedudQ1D7kp5Pse_ZLJDE07-WnDk5V-G9h67TRRo=">
   <style>
-    * {
-      user-select: none;
-    }
+    * { user-select: none; margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
       --bg-color: #f4f6f9;
       --text-color: #333;
-      --header-bg: #4a90e2;
+      --header-bg: linear-gradient(135deg, #4a90e2, #005bea);
       --container-bg: #ffffff;
       --link-color: #4a90e2;
       --link-bg: #f9fafc;
@@ -23,7 +21,7 @@
     body.dark {
       --bg-color: #1e1e1e;
       --text-color: #e0e0e0;
-      --header-bg: #0d47a1;
+      --header-bg: linear-gradient(135deg, #0d47a1, #002171);
       --container-bg: #2c2c2c;
       --link-color: #90caf9;
       --link-bg: #3a3a3a;
@@ -33,149 +31,124 @@
 
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       background: var(--bg-color);
       color: var(--text-color);
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
       background: var(--header-bg);
       color: white;
       text-align: center;
-      padding: 15px 12px;
+      padding: 18px 12px;
       position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      border-radius: 0 0 20px 20px; /* скругление только снизу */
     }
 
+    header h1 {
+      font-size: 1.8em;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
 
     #theme-toggle {
       position: absolute;
       right: 15px;
       top: 50%;
       transform: translateY(-50%);
-
-      padding: 18px 30px;
+      padding: 10px 18px;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       font-size: 1.2em;
       cursor: pointer;
       background-color: #f0f0f0;
-      transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+      transition: 0.2s;
       box-shadow: 0 2px 5px var(--shadow);
       color: var(--text-color);
-      line-height: 1;
+    }
+    #theme-toggle:hover { background-color: #e0e0e0; }
+    body.dark #theme-toggle { background-color: var(--link-bg); color: var(--text-color); }
+
+    .container {
+      flex: 1;
+      /* width: 95%; */
+      /* max-width: 1500px; */
+      margin: 3vw 5vw; /* одинаковые внешние отступы */
+      padding: 25px;     /* одинаковые внутренние отступы */
+      background: var(--container-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 16px var(--shadow);
+      transition: all 0.3s ease;
     }
 
-     #theme-toggle:hover {
-      background-color: #e0e0e0;
+    ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
     }
 
-    #theme-toggle:active {
-      transform: translateY(-48%);
-      box-shadow: 0 1px 3px var(--shadow);
+    .subject {
+      display: flex;
+      flex-direction: column;
+      border-radius: 14px;
+      box-shadow: 0 4px 8px var(--shadow);
+      overflow: hidden;
+      background: var(--link-bg);
     }
 
-    #theme-toggle:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.5);
+    .subject a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      transition: all 0.3s ease;
     }
 
-    body.dark #theme-toggle {
-      background-color: var(--link-bg);
-      color: var(--text-color);
+    .zoom-link {
+      background: var(--link-bg);
+      color: var(--link-color);
+      padding: 20px;
+      font-size: 1.05em;
+      border-radius: 14px 14px 0 0;
+    }
+    .zoom-link:hover { background: var(--link-hover); }
+
+    .book-links { display: flex; }
+    .book-link {
+      flex: 1;
+      background: var(--link-bg);
+      color: var(--link-color);
+      padding: 12px;
+      font-size: 0.9em;
+      border-top: 1px solid var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .book-link:first-child { border-radius: 0 0 0 14px; }
+    .book-link:last-child { border-radius: 0 0 14px 0; border-left: 1px solid var(--shadow); }
+    .book-link.single-book { border-radius: 0 0 14px 14px !important; }
+    .book-link:hover { background: var(--link-hover); }
+
+    .full-width { grid-column: span 3; }
+
+    @media (max-width: 900px) {
+      ul { grid-template-columns: 1fr 1fr; }
+      .full-width { grid-column: span 2; }
     }
 
-  body.dark #theme-toggle:hover {
-   background-color: #5a5a5a;
-  }
-
-  body.dark #theme-toggle:active {
-   transform: translateY(-48%);
-   box-shadow: 0 1px 3px var(--shadow);
-  }
-
-  body.dark #theme-toggle:focus {
-   outline: none;
-   box-shadow: 0 0 0 3px rgba(144, 202, 249, 0.5);
-  }
-  /* КІНЕЦЬ ВИПРАВЛЕНИХ СТИЛІВ */
-
-  .container {
-   width: 90%;
-   max-width: 1400px;
-   margin: 25px auto;
-   padding: 40px;
-   background: var(--container-bg);
-   border-radius: 16px;
-   box-shadow: 0 8px 16px var(--shadow);
-   transition: all 0.3s ease;
-  }
-
-  h2 {
-   border-left: 5px solid var(--link-color);
-   padding-left: 12px;
-   margin-top: 10px;
-   color: var(--link-color);
-   font-size: 1.5em;
-  }
-
-  ul {
-   list-style: none;
-   padding: 0;
-   margin: 0;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   gap: 22px;
-  }
-
-  li a {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   background: var(--link-bg);
-   padding: 28px;
-   border-radius: 14px;
-   font-size: 1.2em;
-   font-weight: bold;
-   text-decoration: none;
-   color: var(--link-color);
-   transition: all 0.3s ease;
-   box-shadow: 0 4px 8px var(--shadow);
-   text-align: center;
-  }
-
-  li a:hover {
-   background: var(--link-hover);
-   transform: translateY(-3px);
-   box-shadow: 0 8px 14px var(--shadow);
-  }
-
-  li a:active {
-   transform: scale(0.96);
-  }
-
-  .full-width {
-   grid-column: span 3;
-  }
-
-  @media (max-width: 900px) {
-   ul {
-    grid-template-columns: 1fr 1fr;
-   }
-   .full-width {
-    grid-column: span 2;
-   }
-  }
-
-  @media (max-width: 480px) {
-   ul {
-    grid-template-columns: 1fr;
-   }
-   .full-width {
-    grid-column: span 1;
-   }
-  }
+    @media (max-width: 480px) {
+      ul { grid-template-columns: 1fr; }
+      .full-width { grid-column: span 1; }
+    }
   </style>
 </head>
 <body>
@@ -187,44 +160,64 @@
 
 <div class="container">
   <ul>
-    <li class="full-width"><a href="https://us05web.zoom.us/j/7958768112?pwd=bHBmaDFkTUlISHdKRUY0cmlXbVdkQT09">Історія України, Всесвітня історія</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us05web.zoom.us/j/8950532273?pwd=dnt1VnHrQ29RvvKNPZn4QqzKXb6gBO.1%20%20Идентификатор%20конференции:%20895%20053%202273%20Код%20доступа:%20ME6efeau">Алгебра, геометрія</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us04web.zoom.us/j/5461360866?pwd=b3BUZE10OEpqRVVIQkovSHcraTJ1Zz09">Біологія</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us05web.zoom.us/j/9773626389?pwd=d041SWxlVFB0dEs4ME94c0dsUXB4dz09">Географія</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="#">Зарубіжна література, без посилання</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us05web.zoom.us/j/88933789147?pwd=oaMXpR9N0oT1ov6H6ZWoSFKV1X1n6W.1">Захист України</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us04web.zoom.us/j/7889847585?pwd=aWRUVVg4QmF5b2djQzROblduMDcrdz09">Інформатика</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us05web.zoom.us/j/82012800497?pwd=xRLsOS3aAaV5xrNQyuOH5NvaY4S0Cy.1">Іноземна мова</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="#">Технології, без посилання</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us04web.zoom.us/j/5621955127?pwd=ejVEQTNOeVRjS3pDa3AxMnlYakpkZz09">Українська мова, література</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us05web.zoom.us/j/82962806394?pwd=VzapWPEPYMFLVf4KCwAFFBGrvxJpeV.1">Фізика та астрономія</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us05web.zoom.us/j/9420045848?pwd=ReaL0twL4R9o7CHt9nbh4iRMbd0kav.1">Фізична культура</a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://us05web.zoom.us/j/5114503115?pwd=aDb1AEODAdo6p5AK0qc2XsVHX7sMzU.1">Хімія</a></li>
+    <!-- Історія -->
+    <li class="subject full-width">
+      <a class="zoom-link" target="_blank" href="https://us05web.zoom.us/j/7958768112?pwd=bHBmaDFkTUlISHdKRUY0cmlXbVdkQT09">Історія України та Всесвітня історія</a>
+      <div class="book-links">
+        <a class="book-link" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/istoriya-ukrayini-11-klas-vlasov-2019-stand">📖 Історія України</a>
+        <a class="book-link" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/vsesvitnya-istoriya-11-klas-polyanskiy-2019">📖 Всесвітня Історія</a>
+      </div>
+    </li>
+
+    <!-- Алгебра + Геометрія -->
+    <li class="subject">
+      <a class="zoom-link" target="_blank" href="https://us05web.zoom.us/j/8950532273?pwd=dnt1VnHrQ29RvvKNPZn4QqzKXb6gBO.1">Алгебра та Геометрія</a>
+      <div class="book-links">
+        <a class="book-link" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/matematika-11-klas-nelin-2019">📖 Алгебра</a>
+        <a class="book-link" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/geometriya-11-klas-nelin-2019">📖 Геометрія</a>
+      </div>
+    </li>
+
+    
+
+    <!-- Інші предмети -->
+    <li class="subject"><a class="zoom-link" target="_blank" href="https://us04web.zoom.us/j/5461360866?pwd=b3BUZE10OEpqRVVIQkovSHcraTJ1Zz09">Біологія</a><a class="book-link single-book" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/biologiya-i-ekologiya-11-klas-zadorozhniy-2019">📖 Підручник</a></li>
+    <!-- Українська -->
+    <li class="subject">
+      <a class="zoom-link" target="_blank" href="https://us04web.zoom.us/j/5621955127?pwd=ejVEQTNOeVRjS3pDa3AxMnlYakpkZz09">Українська мова та література</a>
+      <div class="book-links">
+        <a class="book-link" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/ukrayinska-mova-11-klas-glazova-2019">📖 Мова</a>
+        <a class="book-link" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/ukrayinska-literatura-11-klas-borzenko-2019-stand">📖 Література</a>
+      </div>
+    </li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="https://us05web.zoom.us/j/9773626389?pwd=d041SWxlVFB0dEs4ME94c0dsUXB4dz09">Географія</a><a class="book-link single-book" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/geografiya-11-klas-dovgan-2019">📖 Підручник</a></li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="#">Зарубіжна література</a><a class="book-link single-book" target="_blank" href="#">📖 Підручник</a></li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="https://us05web.zoom.us/j/88933789147?pwd=oaMXpR9N0oT1ov6H6ZWoSFKV1X1n6W.1">Захист України</a><a class="book-link single-book" target="_blank" href="https://lms.human.ua/app/group/1431771/feed">👤 Human</a></li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="https://us04web.zoom.us/j/7889847585?pwd=aWRUVVg4QmF5b2djQzROblduMDcrdz09">Інформатика</a><a class="book-link single-book" target="_blank" href="https://kuard.net/inf/">📖 Підручник</a></li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="https://us05web.zoom.us/j/82012800497?pwd=xRLsOS3aAaV5xrNQyuOH5NvaY4S0Cy.1">Іноземна мова</a><a class="book-link single-book" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/angliyska-mova-11-klas-burenko-2019">📖 Підручник</a></li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="#">Технології</a><a class="book-link single-book" target="_blank" href="#">📖 Підручник</a></li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="https://lms.human.ua/app/group/1393288/feed">Фізика та астрономія, Human</a><a class="book-link single-book" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/fizika-11-klas-zasiekina-2019-stand">📖 Підручник</a></li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="#">Фізична культура</a><a class="book-link single-book" target="_blank" href="https://lms.human.ua/app/group/1393290/feed">👤 Human</a></li>
+    <li class="subject"><a class="zoom-link" target="_blank" href="https://us05web.zoom.us/j/5114503115?pwd=aDb1AEODAdo6p5AK0qc2XsVHX7sMzU.1">Хімія</a><a class="book-link single-book" target="_blank" href="https://4book.org/uchebniki-ukraina/11-klas/himiya-11-klas-grigorovich-2019">📖 Підручник</a></li>
   </ul>
 </div>
 
 <script>
   const themeToggle = document.getElementById('theme-toggle');
-
-   function applyThemeIcons() {
-    if (document.body.classList.contains('dark')) {
-       themeToggle.textContent = '☀️'; // Сонце для темної теми
-    } else {
-      themeToggle.textContent = '🌙'; // Місяць для світлої теми
-    }
+  function applyThemeIcons() {
+    themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
   }
-
   themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     applyThemeIcons();
   });
-  
-  // Встановлюємо початкову іконку
   applyThemeIcons();
 </script>
 
 </body>
 </html>
+
+
 
 
 
